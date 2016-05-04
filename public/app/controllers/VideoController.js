@@ -23,10 +23,7 @@ app.controller('VideoController', function(dataFactory, $scope, $http){
 
             dataFactory.httpRequest('/videos?page='+pageNumber).then(function(data) {
                 $scope.data = data.data;
-
-                //console.log($scope.data);
                 $scope.totalItems = data.total;
-                //console.log($scope.totalItems);
             });
         }
     }

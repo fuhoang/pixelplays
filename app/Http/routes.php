@@ -10,6 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::auth();
 
 Route::get('/', function () {
     return view('master');
@@ -28,6 +29,6 @@ Route::group(array('prefix'=>'/templates/'), function(){
     }));
 });
 
-Route::auth();
 
-Route::get('/home', 'HomeController@index');
+
+

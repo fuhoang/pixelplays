@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Video;
+use Auth;
 
 class VideosController extends Controller
 {
@@ -17,7 +18,7 @@ class VideosController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('auth');
+        $this->middleware('auth');
     }
 
 
@@ -33,8 +34,11 @@ class VideosController extends Controller
         if($request->get('search')){
             $videos = Video::where("title", "LIKE", "%{$request->get('search')}%")->paginate(5);
         }else{
-            $videos = Video::paginate(5);
+            $videos = Video::with('user')->paginate(5);
+
+
         }
+        //print_r($videos);
         return response($videos);
 
     }
@@ -46,7 +50,7 @@ class VideosController extends Controller
      */
     public function store(Request $request){
         $input = $request->all();
-        $create = Video::create($input);
+        $create = Auth::user()->videos()->create($input);
         return response($create);
     }
 
