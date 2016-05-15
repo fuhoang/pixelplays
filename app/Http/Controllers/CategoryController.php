@@ -34,4 +34,16 @@ class CategoryController extends Controller
         return response($create);
 
     }
+
+    /**
+     * Find the category by the given id.
+     *
+     * @param $id
+     * @return Response
+     */
+    public function edit($id)
+    {
+        $category = Category::find($id);
+        return response($category);
+    }
 }

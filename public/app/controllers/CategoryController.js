@@ -50,7 +50,7 @@ app.controller('CategoryController', function(dataFactory, $scope, $http){
     }
 
     $scope.edit = function(id){
-        dataFactory.httpRequest('videos/'+id+'/edit').then(function(data) {
+        dataFactory.httpRequest('category/'+id+'/edit').then(function(data) {
             console.log(data);
             $scope.form = data;
         });
