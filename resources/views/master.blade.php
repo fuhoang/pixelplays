@@ -20,6 +20,7 @@
 
         <!-- App Controller -->
         <script src="{{ asset('/app/controllers/VideoController.js') }}"></script>
+        <script src="{{ asset('/app/controllers/CategoryController.js') }}"></script>
 
 
     </head>

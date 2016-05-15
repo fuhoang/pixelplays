@@ -18,7 +18,11 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['web']], function () {
     Route::resource('videos', 'VideosController');
+    Route::resource('category', 'CategoryController');
+
 });
+
+
 
 Route::group(array('prefix'=>'/templates/'), function(){
     Route::get('{template}', array( function($template){

@@ -4,12 +4,23 @@ app.controller('CategoryController', function(dataFactory, $scope, $http){
     $scope.totalItemsTemp = {};
     $scope.totalItems = 0;
 
+    dataFactory.httpRequest('/category').then(function(data) {
+        $scope.data = data;
+
+        console.log($scope.data);
+        //$scope.totalItems = data.total;
+    });
+
+
+    /*
     $scope.pageChanged = function(newPage) {
         getResultsPage(newPage);
-    };
+    };*/
 
-    getResultsPage(1);
+    //getResultsPage(1);
 
+
+    /*
     function getResultsPage(pageNumber) {
 
         if(! $.isEmptyObject($scope.libraryTemp)){
@@ -27,9 +38,10 @@ app.controller('CategoryController', function(dataFactory, $scope, $http){
             });
         }
     }
+    */
 
     $scope.saveAdd = function(){
-        dataFactory.httpRequest('videos','POST',{},$scope.form).then(function(data) {
+        dataFactory.httpRequest('category','POST',{},$scope.form).then(function(data) {
             console.log(data);
             $scope.data.push(data);
             //console.log($scope.data);

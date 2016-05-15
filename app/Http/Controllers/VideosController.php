@@ -35,8 +35,6 @@ class VideosController extends Controller
             $videos = Video::where("title", "LIKE", "%{$request->get('search')}%")->paginate(5);
         }else{
             $videos = Video::with('user')->paginate(5);
-
-
         }
         //print_r($videos);
         return response($videos);

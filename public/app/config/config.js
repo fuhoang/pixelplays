@@ -6,10 +6,11 @@ app.config(['$routeProvider', function($routeProvider){
             controller: 'VideoController'
 
         })
-        .when('/categories', {
-            templateUrl: 'templates/category.html'
-            //controller: 'ShowOrdersController'
-          })
+        .when('/categories', 
+        {
+            templateUrl: 'templates/category.html',
+            controller: 'CategoryController'
+        })
         .otherwise(
         {
             template: "<h2><strong>THERE IS NO PAGE HERE!</strong></h2>"
