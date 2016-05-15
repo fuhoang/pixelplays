@@ -1,4 +1,4 @@
-app.controller('VideoController', function(dataFactory, $scope, $http){
+app.controller('CategoryController', function(dataFactory, $scope, $http){
     $scope.data = [];
     $scope.libraryTemp = {};
     $scope.totalItemsTemp = {};
