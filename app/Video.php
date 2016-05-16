@@ -10,7 +10,8 @@ class Video extends Model
         'title',
         'description',
         'video_link',
-        'published_at'
+        'published_at',
+        'category_id',
     ];
 
 
@@ -22,5 +23,15 @@ class Video extends Model
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    /**
+     * Get the category associated with the given video.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongTo
+     */
+    public function category()
+    {
+        return $this->belongsTo('App\Category');
     }
 }

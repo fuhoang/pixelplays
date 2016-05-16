@@ -57,10 +57,9 @@ app.controller('CategoryController', function(dataFactory, $scope, $http){
     }
 
     $scope.saveEdit = function(){
-        dataFactory.httpRequest('videos/'+$scope.form.id,'PUT',{},$scope.form).then(function(data) {
-            angular.forEach($scope.data, function(video, key) {
-                console.log(key);
-                if(video.id == data.id){
+        dataFactory.httpRequest('category/'+$scope.form.id,'PUT',{},$scope.form).then(function(data) {
+            angular.forEach($scope.data, function(category, key) {
+                if(category.id == data.id){
                     $scope.data[key] = data;
                 }
             });
@@ -73,7 +72,7 @@ app.controller('CategoryController', function(dataFactory, $scope, $http){
         console.log(index);
         var result = confirm("Are you sure delete this item?");
         if (result) {
-            dataFactory.httpRequest('videos/'+item.id,'DELETE').then(function(data) {
+            dataFactory.httpRequest('category/'+item.id,'DELETE').then(function(data) {
                 $scope.data.splice(index,1);
             });
         }

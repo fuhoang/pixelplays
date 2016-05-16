@@ -10,6 +10,13 @@ app.controller('VideoController', function(dataFactory, $scope, $http){
 
     getResultsPage(1);
 
+
+
+    dataFactory.httpRequest('category').then(function(data) {
+        $scope.categories = data;
+        console.log($scope.categories);
+    });
+
     function getResultsPage(pageNumber) {
 
         if(! $.isEmptyObject($scope.libraryTemp)){

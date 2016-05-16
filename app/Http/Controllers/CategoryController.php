@@ -30,9 +30,8 @@ class CategoryController extends Controller
     public function store(Request $request){
         $input = $request->all();
         $create = Category::create($input);
-        print_r($create);
+        //print_r($create);
         return response($create);
-
     }
 
     /**
@@ -45,5 +44,29 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
         return response($category);
+    }
+
+    /**
+     * update the edited video.
+     *
+     * @param Request $request
+     * @param Request $id
+     * @return Response
+     */
+    public function update(Request $request, $id){
+        $input = $request->all();
+        Category::where("id", $id)->update($input);
+        $category = Category::find($id);
+        return response($category);
+    }
+
+    /**
+     * Delete video
+     *
+     * @param $id
+     * @return bool
+     */
+    public function destroy($id){
+        return Category::where('id', $id)->delete();
     }
 }

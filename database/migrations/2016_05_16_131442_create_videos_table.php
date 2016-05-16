@@ -15,6 +15,7 @@ class CreateVideosTable extends Migration
         Schema::create('videos', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
+            $table->integer('category_id')->unsigned();
             $table->string('title');
             $table->text('description');
             $table->string('video_link');
@@ -26,6 +27,10 @@ class CreateVideosTable extends Migration
                   ->on('users')
                   ->onDelete('cascade');
 
+            $table->foreign('category_id')
+                  ->references('id')
+                  ->on('categories')
+                  ->onDelete('cascade');
         });
     }
 
@@ -39,3 +44,4 @@ class CreateVideosTable extends Migration
         Schema::drop('videos');
     }
 }
+

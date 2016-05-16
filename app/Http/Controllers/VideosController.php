@@ -47,9 +47,19 @@ class VideosController extends Controller
      * @return Response
      */
     public function store(Request $request){
-        //$input = $request->all();
+
+
+        //$video = new Video;
+        //$video->user()->associate(Auth::user());
+        //$video->category()->associate($request->category);
+        //$video->save();
+        $input = $request->all();
+
+        //print_r($input);
+
+        //die();
         //$videos = new Video();
-        $create = Auth::user()->videos()->create($request->all());
+        $create = Auth::user()->videos()->create($input);
         //print_r($create);
         //$create = Video::video()->user()->create($input);
         //echo $create->user_id;

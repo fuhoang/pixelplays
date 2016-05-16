@@ -44,6 +44,13 @@
 <dir-pagination-controls class="pull-right" on-page-change="pageChanged(newPageNumber)" template-url="templates/dirPagination.html" >
 </dir-pagination-controls>
 
+
+<ul ng-repeat="category in categories">
+    <li>{{ category.name }}</li>
+
+</ul>
+
+
 <!-- Create Modal -->
 <div class="modal fade" id="create-video" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -64,6 +71,16 @@
 
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <label for="categorytitle" class="control-label">Category : </label>
+                            <select ng-model="form.category_id" name="category_id" class="form-group">
+                                <option ng-repeat="category in categories" value="{{ category.id }}">{{ category.name }}</option>
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <label for="videoDesciption" class="control-label">Video Description : </label>
