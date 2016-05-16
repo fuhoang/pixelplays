@@ -7,7 +7,7 @@ app.controller('CategoryController', function(dataFactory, $scope, $http){
     dataFactory.httpRequest('/category').then(function(data) {
         $scope.data = data;
 
-        console.log($scope.data);
+        console.log($scope.data.id);
         //$scope.totalItems = data.total;
     });
 

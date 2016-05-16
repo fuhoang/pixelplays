@@ -75,8 +75,11 @@
                     <div class="form-group">
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <label for="categorytitle" class="control-label">Category : </label>
-                            <select ng-model="form.category_id" name="category_id" class="form-group">
-                                <option ng-repeat="category in categories" value="{{ category.id }}">{{ category.name }}</option>
+                            <select ng-options='option.value as option.name for option in typeOptions track by option.id' ng-model="form.type" name="category_id" class="form-group">
+
+
+                                <!--
+                                <option ng-repeat="category in categories" value="{{ category.id }}">{{ category.name }}</option> -->
                             </select>
                         </div>
                     </div>

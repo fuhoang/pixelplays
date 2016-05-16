@@ -11,10 +11,16 @@ app.controller('VideoController', function(dataFactory, $scope, $http){
     getResultsPage(1);
 
 
+    //$scope.form = {type : $scope.typeOptions[0].value};
+
 
     dataFactory.httpRequest('category').then(function(data) {
-        $scope.categories = data;
-        console.log($scope.categories);
+        //$scope.categories = data;
+
+        $scope.typeOptions = data;
+        $scope.form = {type : $scope.typeOptions[0].value};
+        console.log('hello');
+        //console.log($scope.categories);
     });
 
     function getResultsPage(pageNumber) {
