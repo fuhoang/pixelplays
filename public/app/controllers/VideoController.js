@@ -14,6 +14,7 @@ app.controller('VideoController', function(dataFactory, $scope, $http){
     dataFactory.httpRequest('category').then(function(data) {
         $scope.typeOptions = data;
         $scope.cat_id = $scope.typeOptions[0];
+        console.log($scope.cat_id);
     });
 
     function getResultsPage(pageNumber) {
@@ -47,12 +48,17 @@ app.controller('VideoController', function(dataFactory, $scope, $http){
     $scope.edit = function(id){
         dataFactory.httpRequest('videos/'+id+'/edit').then(function(data) {
             console.log(data);
-            $scope.form = data;
+            console.log(data.category);
+            $scope.cat_id = data.category;
+            $scope.editForm = data;
         });
     }
 
     $scope.saveEdit = function(){
-        dataFactory.httpRequest('videos/'+$scope.form.id,'PUT',{},$scope.form).then(function(data) {
+
+        delete $scope.editForm.category;
+        $scope.editForm.category_id = $scope.cat_id.id;
+        dataFactory.httpRequest('videos/'+$scope.editForm.id,'PUT',{},$scope.editForm).then(function(data) {
             angular.forEach($scope.data, function(video, key) {
                 console.log(key);
                 if(video.id == data.id){

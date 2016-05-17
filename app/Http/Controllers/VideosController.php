@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Video;
+use App\Category;
 use App\User;
+use App\Video;
+
 use Auth;
 
 class VideosController extends Controller
@@ -67,6 +69,8 @@ class VideosController extends Controller
     public function edit($id)
     {
         $video = Video::find($id);
+        $cat = Category::find($video->category_id);
+        $video->category = $cat;
         return response($video);
     }
 
@@ -81,8 +85,10 @@ class VideosController extends Controller
     public function update(Request $request, $id){
         $input = $request->all();
         Video::where("id", $id)->update($input);
-        $Video = Video::find($id);
-        return response($Video);
+        $video = Video::find($id);
+        $user = User::find($video->user_id);
+        $video->user = $user;
+        return response($video);
     }
 
 
