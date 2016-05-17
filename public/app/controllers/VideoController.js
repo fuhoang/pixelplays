@@ -1,5 +1,6 @@
 app.controller('VideoController', function(dataFactory, $scope, $http){
     $scope.data = [];
+    $scope.video = {}
     $scope.libraryTemp = {};
     $scope.totalItemsTemp = {};
     $scope.totalItems = 0;
@@ -10,17 +11,9 @@ app.controller('VideoController', function(dataFactory, $scope, $http){
 
     getResultsPage(1);
 
-
-    //$scope.form = {type : $scope.typeOptions[0].value};
-
-
     dataFactory.httpRequest('category').then(function(data) {
-        //$scope.categories = data;
-
         $scope.typeOptions = data;
-        $scope.form = {type : $scope.typeOptions[0].value};
-        console.log('hello');
-        //console.log($scope.categories);
+        $scope.cat_id = $scope.typeOptions[0];
     });
 
     function getResultsPage(pageNumber) {
@@ -42,10 +35,11 @@ app.controller('VideoController', function(dataFactory, $scope, $http){
     }
 
     $scope.saveAdd = function(){
-        dataFactory.httpRequest('videos','POST',{},$scope.form).then(function(data) {
+
+        $scope.video.category_id = $scope.cat_id.id;
+        dataFactory.httpRequest('videos','POST',{},$scope.video).then(function(data) {
             console.log(data);
             $scope.data.push(data);
-            //console.log($scope.data);
             $(".modal").modal("hide");
         });
     }
