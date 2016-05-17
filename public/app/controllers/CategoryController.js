@@ -6,9 +6,6 @@ app.controller('CategoryController', function(dataFactory, $scope, $http){
 
     dataFactory.httpRequest('/category').then(function(data) {
         $scope.data = data;
-
-        console.log($scope.data.id);
-        //$scope.totalItems = data.total;
     });
 
 
@@ -42,16 +39,13 @@ app.controller('CategoryController', function(dataFactory, $scope, $http){
 
     $scope.saveAdd = function(){
         dataFactory.httpRequest('category','POST',{},$scope.form).then(function(data) {
-            console.log(data);
             $scope.data.push(data);
-            //console.log($scope.data);
             $(".modal").modal("hide");
         });
     }
 
     $scope.edit = function(id){
         dataFactory.httpRequest('category/'+id+'/edit').then(function(data) {
-            console.log(data);
             $scope.form = data;
         });
     }
@@ -68,8 +62,6 @@ app.controller('CategoryController', function(dataFactory, $scope, $http){
     }
 
     $scope.remove = function(item,index){
-        console.log(item);
-        console.log(index);
         var result = confirm("Are you sure delete this item?");
         if (result) {
             dataFactory.httpRequest('category/'+item.id,'DELETE').then(function(data) {
