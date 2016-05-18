@@ -16,7 +16,7 @@ Route::get('/', function () {
     return view('master');
 });
 
-Route::group(['middleware' => ['web']], function () {
+Route::group(['prefix' => 'api/v1', 'middleware' => ['web']], function () {
     Route::resource('videos', 'VideosController');
     Route::resource('category', 'CategoryController');
 

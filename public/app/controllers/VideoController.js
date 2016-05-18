@@ -11,7 +11,7 @@ app.controller('VideoController', function(dataFactory, $scope, $http){
 
     getResultsPage(1);
 
-    dataFactory.httpRequest('category').then(function(data) {
+    dataFactory.httpRequest('api/v1/category').then(function(data) {
         $scope.typeOptions = data;
         $scope.cat_id = $scope.typeOptions[0];
         console.log($scope.cat_id);
@@ -21,14 +21,14 @@ app.controller('VideoController', function(dataFactory, $scope, $http){
 
         if(! $.isEmptyObject($scope.libraryTemp)){
 
-            dataFactory.httpRequest('/videos?search='+$scope.searchText+'&page='+pageNumber).then(function(data) {
+            dataFactory.httpRequest('api/v1/videos?search='+$scope.searchText+'&page='+pageNumber).then(function(data) {
                 $scope.data = data.data;
                 $scope.totalItems = data.total;
             });
 
         }else{
 
-            dataFactory.httpRequest('/videos?page='+pageNumber).then(function(data) {
+            dataFactory.httpRequest('api/v1/videos?page='+pageNumber).then(function(data) {
                 $scope.data = data.data;
                 $scope.totalItems = data.total;
             });
@@ -39,7 +39,7 @@ app.controller('VideoController', function(dataFactory, $scope, $http){
 
         if(valid){
             $scope.video.category_id = $scope.cat_id.id;
-            dataFactory.httpRequest('videos','POST',{},$scope.video).then(function(data) {
+            dataFactory.httpRequest('api/v1/videos','POST',{},$scope.video).then(function(data) {
                 console.log(data);
                 $scope.data.push(data);
                 $(".modal").modal("hide");
@@ -51,7 +51,7 @@ app.controller('VideoController', function(dataFactory, $scope, $http){
 
     $scope.edit = function(id){
 
-        dataFactory.httpRequest('videos/'+id+'/edit').then(function(data) {
+        dataFactory.httpRequest('api/v1/videos/'+id+'/edit').then(function(data) {
             console.log(data);
             console.log(data.category);
             $scope.cat_id = data.category;
@@ -64,7 +64,7 @@ app.controller('VideoController', function(dataFactory, $scope, $http){
         if(valid){
             delete $scope.editForm.category;
             $scope.editForm.category_id = $scope.cat_id.id;
-            dataFactory.httpRequest('videos/'+$scope.editForm.id,'PUT',{},$scope.editForm).then(function(data) {
+            dataFactory.httpRequest('api/v1/videos/'+$scope.editForm.id,'PUT',{},$scope.editForm).then(function(data) {
                 angular.forEach($scope.data, function(video, key) {
                     console.log(key);
                     if(video.id == data.id){
@@ -83,7 +83,7 @@ app.controller('VideoController', function(dataFactory, $scope, $http){
         console.log(index);
         var result = confirm("Are you sure delete this item?");
         if (result) {
-            dataFactory.httpRequest('videos/'+item.id,'DELETE').then(function(data) {
+            dataFactory.httpRequest('api/v1/videos/'+item.id,'DELETE').then(function(data) {
                 $scope.data.splice(index,1);
             });
         }
