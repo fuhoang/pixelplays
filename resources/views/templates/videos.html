@@ -13,7 +13,7 @@
             <button class="btn btn-success" data-toggle="modal" data-target="#create-video">Create New</button>
         </div>
     </div>
-</div>
+</div><!-- end row-->
 
 <table class="table table-bordered pagin-table">
     <thead>
@@ -54,19 +54,34 @@
 <!-- Create Modal -->
 <div class="modal fade" id="create-video" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
+
         <div class="modal-content">
-            <form method="POST" name="addVideo" role="form" ng-submit="saveAdd()">
+
+
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                 <h4 class="modal-title" id="myModalLabel">Create Video</h4>
             </div>
+
             <div class="modal-body">
-                <div class="container">
+                <form method="POST" name="addVideo" role="form" ng-submit="saveAdd(addVideo.$valid)" novalidate>
                     <div class="form-group">
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <label for="videoTitle" class="control-label">Video Title : </label>
-                            <div class="form-group">
-                                <input ng-model="video.title" type="text" placeholder="Name" name="title" class="form-control" required />
+                            <div class="form-group" ng-class="
+                            {
+                                'has-error':!addVideo.title.$valid && (!addVideo.title.$pristine || addVideo.$submitted),
+                                'has-success': addVideo.title.$valid && (!addVideo.title.$pristine || addVideo.$submitted)
+                            }
+                            ">
+                                <input type="text"
+                                       class="form-control"
+                                       ng-model="video.title"
+                                       placeholder="Video Name"
+                                       name="title"
+                                       required />
+
+                                <p class="help-block" ng-show="addVideo.title.$error.required && (!addVideo.$pristine || addVideo.$submitted)">This Field is required</p>
                             </div>
                         </div>
                     </div>
@@ -82,30 +97,54 @@
                     <div class="form-group">
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <label for="videoDesciption" class="control-label">Video Description : </label>
-                            <div class="form-group" >
-                                <textarea ng-model="video.description" class="form-control" required>
+                            <div class="form-group" ng-class="
+                            {
+                                'has-error':!addVideo.description.$valid && (!addVideo.description.$pristine || addVideo.$submitted),
+                                'has-success': addVideo.description.$valid && (!addVideo.description.$pristine || addVideo.$submitted)
+                            }
+                            ">
+                                <textarea class="form-control"
+                                          ng-model="video.description"
+                                          name="description"
+                                          required="required">
                                 </textarea>
+                                <p class="help-block" ng-show="addVideo.description.$error.required && (!addVideo.$pristine || addVideo.$submitted)">This Field is required</p>
                             </div>
                         </div>
                     </div>
+
                     <div class="form-group">
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <label for="videoLink" class="control-label">Video Link : </label>
-                            <div class="form-group" >
-                                <input ng-model="video.video_link" type="text" placeholder="Video Link" name="video_link" class="form-control" required />
+                            <div class="form-group" ng-class="
+                            {
+                                'has-error':!addVideo.url.$valid && (!addVideo.url.$pristine || addVideo.$submitted),
+                                'has-success': addVideo.url.$valid && (!addVideo.url.$pristine || addVideo.$submitted)
+                            }
+                            ">
+                                <input type="url"
+                                       class="form-control"
+                                       ng-model="video.video_link"
+                                       id="url"
+                                       placeholder="http://"
+                                       required="required"
+                                       name="url"/>
 
+                                <p class="help-block" ng-show="addVideo.url.$error.required && (!addVideo.$pristine || addVideo.$submitted)">This Field is required</p>
+                                <p class="help-block" ng-show="addVideo.url.$error.url && (!addVideo.$pristine || addVideo.$submitted)">Please enter a valid url http://</p>
                             </div>
                         </div>
                     </div>
+
                     <div class="form-group">
                         <div class="col-sx-12 col-sm-12 col-md-12">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="submit" ng-disabled="addVideo.$invalid" class="btn btn-primary">Submit</button>
+                            <!--<button type="submit" ng-disabled="addVideo.$invalid" class="btn btn-primary">Submit</button>-->
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
-            </form>
         </div>
     </div>
 </div>

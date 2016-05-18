@@ -35,14 +35,18 @@ app.controller('VideoController', function(dataFactory, $scope, $http){
         }
     }
 
-    $scope.saveAdd = function(){
+    $scope.saveAdd = function(valid){
 
-        $scope.video.category_id = $scope.cat_id.id;
-        dataFactory.httpRequest('videos','POST',{},$scope.video).then(function(data) {
-            console.log(data);
-            $scope.data.push(data);
-            $(".modal").modal("hide");
-        });
+        if(valid){
+            $scope.video.category_id = $scope.cat_id.id;
+            dataFactory.httpRequest('videos','POST',{},$scope.video).then(function(data) {
+                console.log(data);
+                $scope.data.push(data);
+                $(".modal").modal("hide");
+            });
+        }else{
+            console.log("Invalid Form");
+        }
     }
 
     $scope.edit = function(id){
