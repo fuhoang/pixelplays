@@ -50,6 +50,7 @@ app.controller('VideoController', function(dataFactory, $scope, $http){
     }
 
     $scope.edit = function(id){
+
         dataFactory.httpRequest('videos/'+id+'/edit').then(function(data) {
             console.log(data);
             console.log(data.category);
@@ -58,19 +59,23 @@ app.controller('VideoController', function(dataFactory, $scope, $http){
         });
     }
 
-    $scope.saveEdit = function(){
+    $scope.saveEdit = function(valid){
 
-        delete $scope.editForm.category;
-        $scope.editForm.category_id = $scope.cat_id.id;
-        dataFactory.httpRequest('videos/'+$scope.editForm.id,'PUT',{},$scope.editForm).then(function(data) {
-            angular.forEach($scope.data, function(video, key) {
-                console.log(key);
-                if(video.id == data.id){
-                    $scope.data[key] = data;
-                }
+        if(valid){
+            delete $scope.editForm.category;
+            $scope.editForm.category_id = $scope.cat_id.id;
+            dataFactory.httpRequest('videos/'+$scope.editForm.id,'PUT',{},$scope.editForm).then(function(data) {
+                angular.forEach($scope.data, function(video, key) {
+                    console.log(key);
+                    if(video.id == data.id){
+                        $scope.data[key] = data;
+                    }
+                });
+                $(".modal").modal("hide");
             });
-            $(".modal").modal("hide");
-        });
+        }else{
+            console.log("Invalid Form")
+        }
     }
 
     $scope.remove = function(item,index){

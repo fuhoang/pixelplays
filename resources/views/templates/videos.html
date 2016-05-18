@@ -57,7 +57,6 @@
 
         <div class="modal-content">
 
-
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                 <h4 class="modal-title" id="myModalLabel">Create Video</h4>
@@ -65,84 +64,80 @@
 
             <div class="modal-body">
                 <form method="POST" name="addVideo" role="form" ng-submit="saveAdd(addVideo.$valid)" novalidate>
-                    <div class="form-group">
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <label for="videoTitle" class="control-label">Video Title : </label>
-                            <div class="form-group" ng-class="
-                            {
-                                'has-error':!addVideo.title.$valid && (!addVideo.title.$pristine || addVideo.$submitted),
-                                'has-success': addVideo.title.$valid && (!addVideo.title.$pristine || addVideo.$submitted)
-                            }
-                            ">
-                                <input type="text"
-                                       class="form-control"
-                                       ng-model="video.title"
-                                       placeholder="Video Name"
-                                       name="title"
-                                       required />
 
-                                <p class="help-block" ng-show="addVideo.title.$error.required && (!addVideo.$pristine || addVideo.$submitted)">This Field is required</p>
-                            </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group" ng-class="
+                        {
+                            'has-error':!addVideo.title.$valid && (!addVideo.title.$pristine || addVideo.$submitted),
+                            'has-success': addVideo.title.$valid && (!addVideo.title.$pristine || addVideo.$submitted)
+                        }
+                        ">
+                            <label for="videoTitle" class="control-label">Video Title : </label>
+                            <input type="text"
+                                   class="form-control"
+                                   ng-model="video.title"
+                                   placeholder="Video Name"
+                                   name="title"
+                                   required />
+
+                            <p class="help-block" ng-show="addVideo.title.$error.required && (!addVideo.$pristine || addVideo.$submitted)">This Field is required</p>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
                             <label for="categorytitle" class="control-label">Category : </label>
                             <select ng-options='option.name for option in typeOptions track by option.id' ng-model="cat_id" name="category_id" class="form-group">
                             </select>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group" ng-class="
+                        {
+                            'has-error':!addVideo.description.$valid && (!addVideo.description.$pristine || addVideo.$submitted),
+                            'has-success': addVideo.description.$valid && (!addVideo.description.$pristine || addVideo.$submitted)
+                        }
+                        ">
                             <label for="videoDesciption" class="control-label">Video Description : </label>
-                            <div class="form-group" ng-class="
-                            {
-                                'has-error':!addVideo.description.$valid && (!addVideo.description.$pristine || addVideo.$submitted),
-                                'has-success': addVideo.description.$valid && (!addVideo.description.$pristine || addVideo.$submitted)
-                            }
-                            ">
-                                <textarea class="form-control"
-                                          ng-model="video.description"
-                                          name="description"
-                                          required="required">
-                                </textarea>
-                                <p class="help-block" ng-show="addVideo.description.$error.required && (!addVideo.$pristine || addVideo.$submitted)">This Field is required</p>
-                            </div>
+                            <textarea class="form-control"
+                                      ng-model="video.description"
+                                      name="description"
+                                      required="required">
+                            </textarea>
+                            <p class="help-block" ng-show="addVideo.description.$error.required && (!addVideo.$pristine || addVideo.$submitted)">This Field is required</p>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group" ng-class="
+                        {
+                            'has-error':!addVideo.url.$valid && (!addVideo.url.$pristine || addVideo.$submitted),
+                            'has-success': addVideo.url.$valid && (!addVideo.url.$pristine || addVideo.$submitted)
+                        }
+                        ">
                             <label for="videoLink" class="control-label">Video Link : </label>
-                            <div class="form-group" ng-class="
-                            {
-                                'has-error':!addVideo.url.$valid && (!addVideo.url.$pristine || addVideo.$submitted),
-                                'has-success': addVideo.url.$valid && (!addVideo.url.$pristine || addVideo.$submitted)
-                            }
-                            ">
-                                <input type="url"
-                                       class="form-control"
-                                       ng-model="video.video_link"
-                                       id="url"
-                                       placeholder="http://"
-                                       required="required"
-                                       name="url"/>
+                            <input type="url"
+                                   class="form-control"
+                                   ng-model="video.video_link"
+                                   id="url"
+                                   placeholder="http://"
+                                   required="required"
+                                   name="url"/>
 
-                                <p class="help-block" ng-show="addVideo.url.$error.required && (!addVideo.$pristine || addVideo.$submitted)">This Field is required</p>
-                                <p class="help-block" ng-show="addVideo.url.$error.url && (!addVideo.$pristine || addVideo.$submitted)">Please enter a valid url http://</p>
-                            </div>
+                            <p class="help-block" ng-show="addVideo.url.$error.required && (!addVideo.$pristine || addVideo.$submitted)">This Field is required</p>
+                            <p class="help-block" ng-show="addVideo.url.$error.url && (!addVideo.$pristine || addVideo.$submitted)">Please enter a valid url http://</p>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-sx-12 col-sm-12 col-md-12">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <!--<button type="submit" ng-disabled="addVideo.$invalid" class="btn btn-primary">Submit</button>-->
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" ng-disabled="addVideo.$invalid" class="btn btn-primary">Submit</button>
+                            <!--<button type="submit" class="btn btn-primary">Submit</button>-->
                         </div>
                     </div>
+
                 </form>
             </div>
         </div>
@@ -153,56 +148,91 @@
 <div class="modal fade" id="edit-data" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form method="POST" name="editVideo" role="form" ng-submit="saveEdit()">
-                <input ng-model="editForm.id" type="hidden" placeholder="Name" name="name" class="form-control" />
+
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                 <h4 class="modal-title" id="myModalLabel">Edit Item</h4>
             </div>
+
             <div class="modal-body">
-                <div class="container">
-                    <div class="form-group">
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                        <label for="videoTitle" class="control-label">Video Title : </label>
-                            <div class="form-group">
-                               <input ng-model="editForm.title" type="text" placeholder="Name" name="title" class="form-control" required />
-                            </div>
+
+                <form method="POST" name="editVideo" role="form" ng-submit="saveEdit(editVideo.$valid)">
+                    <input ng-model="editForm.id" type="hidden" placeholder="Name" name="name" class="form-control" />
+
+
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group" ng-class="
+                        {
+                            'has-error':!editVideo.title.$valid && (!editVideo.title.$pristine || editVideo.$submitted),
+                            'has-success': editVideo.title.$valid && (!editVideo.title.$pristine || editVideo.$submitted)
+                        }
+                        ">
+
+                                <label for="videoTitle" class="control-label">Video Title : </label>
+                                <input ng-model="editForm.title"
+                                      type="text"
+                                      name="title"
+                                      class="form-control"
+                                      required="required" />
+                                <p class="help-block" ng-show="editVideo.title.$error.required && (!editVideo.$pristine || editVideo.$submitted)">This Field is required</p>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-xs-12 col-sm-12 col-md-12">
+
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
                             <label for="categorytitle" class="control-label">Category : </label>
                             <select ng-options='option.name for option in typeOptions track by option.id' ng-model="cat_id" name="category_id" class="form-group">
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                        <label for="videoDesciption" class="control-label">Video Description : </label>
-                            <div class="form-group">
-                               <textarea ng-model="editForm.description" class="form-control" required>
-                                </textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <label for="videoLink" class="control-label">Video Link : </label>
-                            <div class="form-group" >
-                                <input ng-model="editForm.video_link" type="text" placeholder="Video Link" name="video_link" class="form-control" required />
 
-                            </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group" ng-class="
+                        {
+                            'has-error':!editVideo.description.$valid && (!editVideo.description.$pristine || editVideo.$submitted),
+                            'has-success': editVideo.description.$valid && (!editVideo.description.$pristine || editVideo.$submitted)
+                        }
+                        ">
+                            <label for="videoDesciption" class="control-label">Video Description : </label>
+                            <textarea ng-model="editForm.description"
+                                      class="form-control"
+                                      name="description"
+                                      required="required">
+                            </textarea>
+                            <p class="help-block" ng-show="editVideo.description.$error.required && (!editVideo.$pristine || editVideo.$submitted)">This Field is required</p>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-sx-12 col-sm-12 col-md-12">
+
+
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group" ng-class="
+                        {
+                            'has-error':!editVideo.url.$valid && (!editVideo.url.$pristine || editVideo.$submitted),
+                            'has-success': editVideo.url.$valid && (!editVideo.url.$pristine || editVideo.$submitted)
+                        }
+                        ">
+                            <label for="videoLink" class="control-label">Video Link : </label>
+                            <input ng-model="editForm.video_link"
+                                    type="url"
+                                    name="url"
+                                    class="form-control"
+                                    required="required" />
+                            <p class="help-block" ng-show="editVideo.url.$error.required && (!editVideo.$pristine || editVideo.$submitted)">This Field is required</p>
+                            <p class="help-block" ng-show="editVideo.url.$error.url && (!editVideo.$pristine || editVideo.$submitted)">Please enter a valid url http://</p>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sx-12 col-sm-12 col-md-12">
+                        <div class="form-group">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             <button type="submit" ng-disabled="editVideo.$invalid" class="btn btn-primary create-crud">Submit</button>
                         </div>
                     </div>
-                </div>
+
+                </form>
             </div>
-            </form>
         </div>
     </div>
 </div>
