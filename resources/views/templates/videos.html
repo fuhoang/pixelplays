@@ -26,7 +26,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr dir-paginate="value in data | itemsPerPage:20" total-items="totalItems">
+        <tr dir-paginate="value in data | itemsPerPage:5" total-items="totalItems">
             <td>{{ $index + 1 }}</td>
             <td>{{ value.title }}</td>
             <td>{{ value.description }}</td>
@@ -78,7 +78,7 @@
                                    name="title"
                                    required />
 
-                            <p class="help-block" ng-show="addVideo.title.$error.required && (!addVideo.$pristine || addVideo.$submitted)">This Field is required</p>
+                            <p class="help-block" ng-show="addVideo.title.$error.required && (!addVideo.title.$pristine || addVideo.$submitted)">This Field is required</p>
                         </div>
                     </div>
 
@@ -103,7 +103,7 @@
                                       name="description"
                                       required="required">
                             </textarea>
-                            <p class="help-block" ng-show="addVideo.description.$error.required && (!addVideo.$pristine || addVideo.$submitted)">This Field is required</p>
+                            <p class="help-block" ng-show="addVideo.description.$error.required && (!addVideo.description.$pristine || addVideo.$submitted)">This Field is required</p>
                         </div>
                     </div>
 
@@ -123,7 +123,7 @@
                                    required="required"
                                    name="url"/>
 
-                            <p class="help-block" ng-show="addVideo.url.$error.required && (!addVideo.$pristine || addVideo.$submitted)">This Field is required</p>
+                            <p class="help-block" ng-show="addVideo.url.$error.required && (!addVideo.url.$pristine || addVideo.$submitted)">This Field is required</p>
                             <p class="help-block" ng-show="addVideo.url.$error.url && (!addVideo.$pristine || addVideo.$submitted)">Please enter a valid url http://</p>
                         </div>
                     </div>

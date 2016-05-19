@@ -38,16 +38,11 @@ class VideosController extends Controller
         if($request->get('search')){
             $videos = Video::where("title", "LIKE", "%{$request->get('search')}%")->paginate(5);
         }else{
-            $videos = Video::with('user')->paginate(20);
+            $videos = Video::with('user')->paginate(5);
         }
 
         //return response($videos);
-
-
-        return Response::json([
-            'videos' => $this->transformCollection($videos)
-            //'data' => $videos
-        ], 200);
+        return Response::json($this->transformCollection($videos), 200);
 
     }
 
@@ -150,7 +145,17 @@ class VideosController extends Controller
 
         $videosArray = $videos->toArray();
 
-        return array_map([$this, 'transform'], $videosArray['data']);
+        return [
+            'total' => $videosArray['total'],
+            'per_page' => intval($videosArray['per_page']),
+            'current_page' => $videosArray['current_page'],
+            'last_page' => $videosArray['last_page'],
+            'next_page_url' => $videosArray['next_page_url'],
+            'prev_page_url' => $videosArray['prev_page_url'],
+            'from' => $videosArray['from'],
+            'to' =>$videosArray['to'],
+            'videos' => array_map([$this, 'transform'], $videosArray['data'])
+            ];
     }
 
     private function transform($video, $category = null){
