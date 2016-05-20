@@ -41,9 +41,7 @@ class VideosController extends Controller
             $videos = Video::with('user')->paginate(5);
         }
 
-        //return response($videos);
         return Response::json($this->transformCollection($videos), 200);
-
     }
 
     /**
@@ -69,7 +67,6 @@ class VideosController extends Controller
     }
 
 
-
     /**
      * Creating a new post
      *
@@ -80,8 +77,6 @@ class VideosController extends Controller
         $create = Auth::user()->videos()->create($request->all());
         $user = User::find($create->user_id);
         $create->user = $user;
-        //return response($create);
-
         return Response::json([
             'message' => 'Video Created Successfully',
             'videos' => $this->transform($create)
@@ -100,14 +95,9 @@ class VideosController extends Controller
     {
         $video = Video::find($id);
         $cat = Category::find($video->category_id);
-        //$video->category = $cat;
-
         return Response::json([
             'video' => $this->transform($video, $cat)
-            //'category'=> $cat
         ], 200);
-
-
     }
 
 
@@ -174,13 +164,7 @@ class VideosController extends Controller
 
         if($category != null){
             $transform['category'] = $category;
-
         }
-
-
-
-
-
 
         return $transform;
     }
