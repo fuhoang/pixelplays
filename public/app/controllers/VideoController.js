@@ -22,7 +22,7 @@ app.controller('VideoController', function(dataFactory, $scope, $http){
         if(! $.isEmptyObject($scope.libraryTemp)){
 
             dataFactory.httpRequest('api/v1/videos?search='+$scope.searchText+'&page='+pageNumber).then(function(data) {
-                $scope.data = data.data;
+                $scope.data = data.videos;
                 $scope.totalItems = data.total;
             });
 

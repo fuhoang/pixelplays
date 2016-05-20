@@ -36,11 +36,12 @@ class VideosController extends Controller
         $input = $request->all();
 
         if($request->get('search')){
-            $videos = Video::where("title", "LIKE", "%{$request->get('search')}%")->paginate(5);
+            $videos = Video::with('user')->where("title", "LIKE", "%{$request->get('search')}%")->paginate(5);
         }else{
             $videos = Video::with('user')->paginate(5);
         }
 
+        //return response($videos);
         return Response::json($this->transformCollection($videos), 200);
     }
 
