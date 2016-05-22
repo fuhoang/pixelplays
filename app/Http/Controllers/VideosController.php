@@ -22,7 +22,9 @@ class VideosController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
+        //$this->middleware('auth.basic');
+        $this->middleware('jwt.auth');
     }
 
 

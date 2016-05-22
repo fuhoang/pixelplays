@@ -16,13 +16,18 @@ Route::get('/', function () {
     return view('master');
 });
 
-Route::group(['prefix' => 'api/v1', 'middleware' => ['web']], function () {
+Route::group(['prefix' => 'api/v1','middleware' => ['web', 'cors']], function()
+{
+    Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
+    Route::post('authenticate', 'AuthenticateController@authenticate');
+    Route::get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
+});
+
+Route::group(['prefix' => 'api/v1', 'middleware' => ['web', 'cors']], function () {
     Route::resource('videos', 'VideosController');
     Route::resource('category', 'CategoryController');
 
 });
-
-
 
 Route::group(array('prefix'=>'/templates/'), function(){
     Route::get('{template}', array( function($template){
