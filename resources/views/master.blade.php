@@ -16,7 +16,11 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular-route.min.js"></script>
 
+        <!-- Application Dependencies -->
+        <script src="{{ asset('/app/packages/satellizer/satellizer.js') }}"></script>
         <script src="{{ asset('/app/packages/dirPagination.js') }}"></script>
+
+        <!-- Application Scripts -->
         <script src="{{ asset('/app/app.js') }}"></script>
         <script src="{{ asset('/app/config/config.js') }}"></script>
         <script src="{{ asset('/app/services/services.js') }}"></script>
