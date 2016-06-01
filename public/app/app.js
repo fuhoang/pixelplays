@@ -1,1 +1,1 @@
-var app = angular.module('main-app', ['ngRoute', 'angularUtils.directives.dirPagination', 'satellizer']);
+var app = angular.module('main-app', ['ui.router', 'angularUtils.directives.dirPagination', 'satellizer']);

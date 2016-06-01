@@ -24,7 +24,7 @@ class VideosController extends Controller
     {
         //$this->middleware('auth');
         //$this->middleware('auth.basic');
-        $this->middleware('jwt.auth');
+        $this->middleware('auth');
     }
 
 

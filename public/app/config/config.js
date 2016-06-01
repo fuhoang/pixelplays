@@ -1,28 +1,30 @@
-app.config(['$routeProvider', function($routeProvider, $authProvider){
+app.config(['$stateProvider', function($stateProvider, $authProvider){
 
     //$authProvider.loginUrl = '/api/authenticate';
 
     //$urlRouterProvider.otherwise('/login');
 
-    $routeProvider
-        .when('/',
+    $stateProvider
+        .state('/',
         {
+            url: '/',
             templateUrl: 'templates/videos.html',
-            controller: 'VideoController'
+            controller: 'VideoController',
+            controlerAs: 'VideoCtrl'
 
         })
-        .when('/login', 
+        .state('login',
         {
+            url: '/login',
             templateUrl: 'templates/login.html',
-            controller: 'AuthController'
+            controller: 'AuthController',
+            controlerAs: 'AuthCtrl'
         })
-        .when('/categories', 
+        .state('categories',
         {
+            url: '/categories',
             templateUrl: 'templates/category.html',
-            controller: 'CategoryController'
-        })
-        .otherwise(
-        {
-            template: "<h2><strong>THERE IS NO PAGE HERE!</strong></h2>"
+            controller: 'CategoryController',
+            controllerAs: 'categoriesCtrl'
         });
 }]);

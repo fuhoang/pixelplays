@@ -17,6 +17,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular-route.min.js"></script>
 
         <!-- Application Dependencies -->
+        <script src="{{ asset('/app/packages/angular-ui-router/angular-ui-router.min.js') }}"></script>
         <script src="{{ asset('/app/packages/satellizer/satellizer.js') }}"></script>
         <script src="{{ asset('/app/packages/dirPagination.js') }}"></script>
 
@@ -26,6 +27,7 @@
         <script src="{{ asset('/app/services/services.js') }}"></script>
 
         <!-- App Controller -->
+        <script src="{{ asset('/app/controllers/AuthController.js') }}"></script>
         <script src="{{ asset('/app/controllers/VideoController.js') }}"></script>
         <script src="{{ asset('/app/controllers/CategoryController.js') }}"></script>
 
@@ -38,7 +40,7 @@
             @yield('content')
         @else
             <div class="container">
-                <ng-view></ng-view>
+                <ui-view></ui-view>
             </div>
         @endif
     </body>

@@ -1,4 +1,4 @@
-app.controller('VideoController', function(dataFactory, $scope, $http){
+app.controller('VideoController', function(dataFactory, $scope, $http, $state){
     $scope.data = [];
     $scope.video = {}
     $scope.libraryTemp = {};
